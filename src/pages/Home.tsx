@@ -12,6 +12,7 @@ import { SectionLabel } from "../components/ui/SectionLabel";
 import { GlassCard } from "../components/ui/GlassCard";
 import { GlassButton } from "../components/ui/GlassButton";
 import { stats, features, HERO, PRINCIPAL_MESSAGE, CTA_SECTION } from "../data/home";
+import { useTranslation } from "../lib/useTranslation";
 
 // ─── Count-up hook ───────────────────────────────────────────────────────────
 const useCountUp = (end: number, duration = 1800) => {
@@ -47,9 +48,7 @@ const useCountUp = (end: number, duration = 1800) => {
 };
 
 // ─── Stat card sub-descriptions ─────────────────────────────────────────────
-const STAT_DESCS = ["Est. January 1994", "Expert Faculty", "Active Learners", "National Excellence"];
-
-const StatCard = ({ value, label, icon: Icon, descIndex }: { value: string; label: string; icon: ElementType; descIndex: number }) => {
+const StatCard = ({ value, label, icon: Icon, desc }: { value: string; label: string; icon: ElementType; desc: string }) => {
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10);
   const suffix = value.replace(/[\d,]/g, "").trim();
   const { count, ref } = useCountUp(numericValue);
@@ -98,7 +97,7 @@ const StatCard = ({ value, label, icon: Icon, descIndex }: { value: string; labe
         </div>
         {/* Sub-desc */}
         <div style={{ fontSize: "11px", fontWeight: 500, color: "#64748B" }}>
-          {STAT_DESCS[descIndex]}
+          {desc}
         </div>
       </motion.div>
     </div>
@@ -107,6 +106,7 @@ const StatCard = ({ value, label, icon: Icon, descIndex }: { value: string; labe
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 const Home = () => {
+  const t = useTranslation();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -198,8 +198,7 @@ const Home = () => {
               marginBottom: "28px",
             }}
           >
-            Empowering<br />
-            <span style={{ color: "var(--accent)" }}>Minds</span>
+            {t.hero.headline1}
           </motion.div>
           {/* Semantic H1 for SEO — visually hidden, screen-reader accessible */}
           <h1 className="sr-only">
@@ -219,7 +218,7 @@ const Home = () => {
             color: "rgba(255,255,255,0.88)",
             fontSize: "15px", lineHeight: 1.75, marginBottom: "28px",
           }}>
-            Education for Character, Knowledge &amp; Wisdom. A premier institution in Pokhara from Kindergarten to Class 12.
+            {t.hero.subtext}
           </p>
 
           {/* CTA Buttons side-by-side */}
@@ -235,7 +234,7 @@ const Home = () => {
                   textDecoration: "none", outline: "none",
                 }}
               >
-                Admission Open
+                {t.hero.ctaPrimary}
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} style={{ display: "inline-flex" }}>
@@ -252,7 +251,7 @@ const Home = () => {
                   transition: "all 0.3s ease",
                 }}
               >
-                Learn More
+                {t.hero.ctaSecondary}
               </Link>
             </motion.div>
           </div>
@@ -310,7 +309,7 @@ const Home = () => {
               display: "flex", alignItems: "center", gap: "8px",
             }}>
               <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "var(--accent)", display: "inline-block", flexShrink: 0 }} />
-              NEB Affiliated
+              {t.hero.tagline}
             </div>
             <div style={{
               background: "rgba(0,0,0,0.52)",
@@ -322,7 +321,7 @@ const Home = () => {
               display: "flex", alignItems: "center", gap: "8px",
             }}>
               <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FFA94D", display: "inline-block", flexShrink: 0 }} />
-              My second teacher
+              {t.hero.headline2}
             </div>
           </div>
           <div style={{ width: "1px", height: "44px", background: "rgba(0,217,126,0.35)", margin: "0 20px 0 auto" }} />
@@ -421,7 +420,7 @@ const Home = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
               >
-                <StatCard value={value} label={label} icon={icon} descIndex={i} />
+                <StatCard value={value} label={label} icon={icon} desc={t.stats.descriptions[i]} />
               </motion.div>
             ))}
           </div>
@@ -511,7 +510,7 @@ const Home = () => {
                     borderLeft: "3px solid #4ADE80",
                     paddingLeft: "14px",
                   }}>
-                    "{PRINCIPAL_MESSAGE.quote}"
+                    "{t.leadership.quote}"
                   </p>
                 </div>
               </div>
@@ -554,7 +553,7 @@ const Home = () => {
                 letterSpacing: "3px", textTransform: "uppercase",
                 marginBottom: "20px",
               }}>
-                Leadership
+                {t.leadership.sectionTag}
               </div>
 
               {/* Heading */}
@@ -564,7 +563,7 @@ const Home = () => {
                 letterSpacing: "-0.5px", lineHeight: 1.2,
                 marginBottom: "28px",
               }}>
-                {PRINCIPAL_MESSAGE.title}
+                {t.leadership.sectionTitle}
               </h2>
 
               {/* Paragraphs */}
@@ -598,10 +597,10 @@ const Home = () => {
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, color: "#0F172A", fontSize: "15px" }}>
-                    Dr. Ramji Sharma
+                    {t.leadership.name}
                   </div>
                   <div style={{ fontSize: "12px", color: "#00864B", fontWeight: 600, marginTop: "2px" }}>
-                    Principal
+                    {t.leadership.role}
                   </div>
                   <div style={{ fontSize: "11px", color: "#64748B", marginTop: "2px" }}>
                     New Galaxy English Secondary School
@@ -685,7 +684,7 @@ const Home = () => {
               letterSpacing: "3px", textTransform: "uppercase",
               marginBottom: "20px",
             }}>
-              Why New Galaxy
+              {t.excellence.sectionTag}
             </div>
             <h2
               id="excellence-heading"
@@ -696,8 +695,7 @@ const Home = () => {
                 marginBottom: "16px",
               }}
             >
-              Education That{" "}
-              <span style={{ color: "#A7F3D0" }}>Transforms</span> Lives
+              {t.excellence.sectionTitle}
             </h2>
             <p style={{
               maxWidth: "560px", margin: "0 auto",
@@ -709,7 +707,7 @@ const Home = () => {
 
           {/* ── 3 Claymorphism cards ── */}
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map(({ icon: Icon, title, stat, desc }, i) => (
+            {features.map(({ icon: Icon, stat }, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 28 }}
@@ -770,7 +768,7 @@ const Home = () => {
                   color: "#0F172A", marginBottom: "10px",
                   lineHeight: 1.3,
                 }}>
-                  {title}
+                  {t.excellence.cards[i].title}
                 </h3>
 
                 {/* Description */}
@@ -778,7 +776,7 @@ const Home = () => {
                   color: "#475569", fontSize: "14px",
                   lineHeight: 1.75,
                 }}>
-                  {desc}
+                  {t.excellence.cards[i].desc}
                 </p>
               </motion.div>
             ))}
@@ -860,15 +858,14 @@ const Home = () => {
               letterSpacing: "-0.5px", lineHeight: 1.15,
               marginBottom: "18px",
             }}>
-              Ready to Join the{" "}
-              <span style={{ color: "#6EE7B7" }}>New Galaxy</span> Family?
+              {t.cta.title}
             </h2>
 
             <p style={{
               maxWidth: "500px", margin: "0 auto 36px",
               color: "rgba(255,255,255,0.78)", fontSize: "16px", lineHeight: 1.75,
             }}>
-              Seats are limited for Grade 11 in Science, Computer Science, Management, Hotel Management &amp; Tourism. Apply early and secure your future.
+              {t.cta.subtitle}
             </p>
 
             {/* Divider */}
@@ -892,7 +889,7 @@ const Home = () => {
                     cursor: "pointer",
                   }}
                 >
-                  Apply Now <ArrowRight size={17} />
+                  {t.cta.primary} <ArrowRight size={17} />
                 </motion.div>
               </Link>
               <Link to="/about" style={{ textDecoration: "none" }}>
@@ -909,7 +906,7 @@ const Home = () => {
                     cursor: "pointer",
                   }}
                 >
-                  Learn More
+                  {t.cta.secondary}
                 </motion.div>
               </Link>
             </div>

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { useTranslation } from "../lib/useTranslation";
 import { motion } from "motion/react";
 import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { ABOUT_HERO, visionItems } from "../data/about";
@@ -7,6 +8,7 @@ import { SCHOOL_INFO } from "../data/site";
 
 const About = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const t = useTranslation();
 
   useEffect(() => {
     document.title = "About Us | New Galaxy English Secondary School";
@@ -109,7 +111,7 @@ const About = () => {
                   marginBottom: "20px",
                 }}
               >
-                About Our School
+                {t.about.hero.tag}
               </div>
 
               <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "#FFFFFF", marginBottom: "20px", lineHeight: 1.15 }}>
@@ -175,10 +177,10 @@ const About = () => {
                 marginBottom: "16px",
               }}
             >
-              Our Foundation
+              {t.about.vision.tag}
             </div>
             <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, color: "#0F172A" }}>
-              Vision, Mission &amp; Values
+              {t.about.vision.title}
             </h2>
           </motion.div>
 
@@ -248,10 +250,10 @@ const About = () => {
                 marginBottom: "16px",
               }}
             >
-              Our Educators
+              {t.about.team.tag}
             </div>
             <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, color: "#0F172A" }}>
-              Key Faculty Members
+              {t.about.team.title}
             </h2>
           </motion.div>
 

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Calendar, CheckCircle } from "lucide-react";
 import { SCHOOL_INFO } from "../data/site";
+import { useTranslation } from "../lib/useTranslation";
 
-const contactDetails = [
-  { icon: MapPin,   title: "Our Location", detail: SCHOOL_INFO.address },
-  { icon: Phone,    title: "Call Us",       detail: SCHOOL_INFO.phone },
-  { icon: Mail,     title: "Email Us",      detail: SCHOOL_INFO.email },
-  { icon: Calendar, title: "Office Hours",  detail: SCHOOL_INFO.officeHours },
+const contactItems = [
+  { icon: MapPin,   key: "address" as const, detail: SCHOOL_INFO.address },
+  { icon: Phone,    key: "phone"   as const, detail: SCHOOL_INFO.phone },
+  { icon: Mail,     key: "email"   as const, detail: SCHOOL_INFO.email },
+  { icon: Calendar, key: "hours"   as const, detail: SCHOOL_INFO.officeHours },
 ];
 
 const inputStyle = (hasError: boolean): React.CSSProperties => ({
@@ -31,6 +32,7 @@ const labelStyle: React.CSSProperties = {
 };
 
 const Contact = () => {
+  const t = useTranslation();
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -122,7 +124,7 @@ const Contact = () => {
                 marginBottom: "20px",
               }}
             >
-              Get In Touch
+              {t.contact.hero.tag}
             </span>
             <h1
               style={{
@@ -134,10 +136,10 @@ const Contact = () => {
                 marginBottom: "16px",
               }}
             >
-              Contact Us
+              {t.contact.hero.title}
             </h1>
             <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "16px", maxWidth: "520px", margin: "0 auto", lineHeight: 1.7 }}>
-              Have questions about admissions or our programmes? Our team will get back to you as soon as possible.
+              {t.contact.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -153,7 +155,7 @@ const Contact = () => {
               Reach Us
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {contactDetails.map(({ icon: Icon, title, detail }, i) => (
+            {contactItems.map(({ icon: Icon, key, detail }, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 16 }}
@@ -189,7 +191,7 @@ const Contact = () => {
                     <Icon size={20} />
                   </div>
                   <div>
-                    <h4 style={{ fontWeight: 700, color: "#0F172A", marginBottom: "4px", fontSize: "15px" }}>{title}</h4>
+                    <h4 style={{ fontWeight: 700, color: "#0F172A", marginBottom: "4px", fontSize: "15px" }}>{t.contact.info[key]}</h4>
                     <p style={{ color: "#475569", fontSize: "14px", lineHeight: 1.6 }}>{detail}</p>
                   </div>
                 </motion.div>
@@ -237,11 +239,11 @@ const Contact = () => {
               {/* Name + Email row */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
                 <div>
-                  <label style={labelStyle}>Full Name</label>
+                  <label style={labelStyle}>{t.contact.form.name}</label>
                   <input
                     name="name"
                     type="text"
-                    placeholder="John Doe"
+                    placeholder={t.contact.form.name}
                     value={formData.name}
                     onChange={handleChange}
                     style={inputStyle(!!errors.name)}
@@ -249,11 +251,11 @@ const Contact = () => {
                   {errors.name && <span style={{ color: "#EF4444", fontSize: "12px" }}>{errors.name}</span>}
                 </div>
                 <div>
-                  <label style={labelStyle}>Email Address</label>
+                  <label style={labelStyle}>{t.contact.form.email}</label>
                   <input
                     name="email"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder={t.contact.form.email}
                     value={formData.email}
                     onChange={handleChange}
                     style={inputStyle(!!errors.email)}
@@ -278,11 +280,11 @@ const Contact = () => {
 
               {/* Message */}
               <div style={{ marginBottom: "28px" }}>
-                <label style={labelStyle}>Message</label>
+                <label style={labelStyle}>{t.contact.form.message}</label>
                 <textarea
                   name="message"
                   rows={5}
-                  placeholder="How can we help you?"
+                  placeholder={t.contact.form.message}
                   value={formData.message}
                   onChange={handleChange}
                   style={{ ...inputStyle(!!errors.message), resize: "vertical" }}
@@ -309,7 +311,7 @@ const Contact = () => {
                 onMouseEnter={e => (e.currentTarget.style.opacity = "0.88")}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
               >
-                Send Message
+                {t.contact.form.submit}
               </button>
             </form>
           </motion.div>

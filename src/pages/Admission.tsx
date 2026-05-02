@@ -8,8 +8,10 @@ import { GlassButton } from "../components/ui/GlassButton";
 import { GlassInput } from "../components/ui/GlassInput";
 import { GlassSelect } from "../components/ui/GlassInput";
 import { classOptions, ADMISSION_SUCCESS } from "../data/admission";
+import { useTranslation } from "../lib/useTranslation";
 
 const Admission = () => {
+  const t = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -44,10 +46,10 @@ const Admission = () => {
       <section className="py-24">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-12">
-            <SectionLabel>Admissions 2026–27</SectionLabel>
-            <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-3" style={{ color: "var(--text-primary)" }}>Admission Form</h1>
+            <SectionLabel>{t.admission.hero.tag}</SectionLabel>
+            <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-3" style={{ color: "var(--text-primary)" }}>{t.admission.hero.title}</h1>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              Start your journey with New Galaxy. Please fill out the form accurately.
+              {t.admission.hero.subtitle}
             </p>
           </div>
 

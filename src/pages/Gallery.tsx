@@ -3,10 +3,22 @@ import { motion, AnimatePresence } from "motion/react";
 import { Filter, Play } from "lucide-react";
 import { Lightbox } from "../components/ui/Lightbox";
 import { allImages, galleryCategories } from "../data/gallery";
+import { useTranslation } from "../lib/useTranslation";
 
 const Gallery = () => {
+  const t = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const categoryLabel = (cat: string) => {
+    const map: Record<string, string> = {
+      All: t.gallery.all,
+      Photos: t.gallery.photos,
+      Videos: t.gallery.videos,
+      Events: t.gallery.events,
+    };
+    return map[cat] ?? cat;
+  };
 
   useEffect(() => {
     document.title = "Gallery | New Galaxy English Secondary School";
@@ -52,18 +64,18 @@ const Gallery = () => {
               border: "1px solid rgba(255,255,255,0.25)",
             }}
           >
-            Visual Stories
-          </span>
+            {t.gallery.hero.tag}
+</span>
 
           <h1
             className="font-serif font-bold mb-4"
             style={{ fontSize: "clamp(2.5rem, 6vw, 3.75rem)", color: "#FFFFFF", lineHeight: 1.1 }}
           >
-            School Gallery
+            {t.gallery.hero.title}
           </h1>
 
           <p style={{ color: "rgba(255,255,255,0.80)", maxWidth: "36rem", fontSize: "1rem", lineHeight: 1.6 }}>
-            Explore life at New Galaxy — campus, events, sports, academics, and cultural moments.
+            {t.gallery.hero.subtitle}
           </p>
 
           <p
@@ -111,7 +123,7 @@ const Gallery = () => {
                 color: activeFilter === cat ? "#FFFFFF" : "#475569",
               }}
             >
-              {cat}
+              {categoryLabel(cat)}
             </button>
           ))}
           <span className="ml-auto shrink-0 text-xs font-semibold" style={{ color: "#00864B" }}>

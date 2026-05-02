@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "motion/react";
 import { courses, higherSecondary, achievements } from "../data/academic";
+import { useTranslation } from "../lib/useTranslation";
 
 const CARD_STYLE = {
   background: "#FFFFFF",
@@ -23,6 +24,7 @@ const PILL_STYLE: React.CSSProperties = {
 };
 
 const Academic = () => {
+  const t = useTranslation();
   useEffect(() => {
     document.title = "Academic Programmes | New Galaxy English Secondary School";
   }, []);
@@ -75,7 +77,7 @@ const Academic = () => {
                 backdropFilter: "blur(8px)",
               }}
             >
-              Academic Programmes
+              {t.academic.hero.tag}
             </span>
 
             <h1
@@ -222,12 +224,12 @@ const Academic = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <span style={PILL_STYLE}>Class 11 &amp; 12</span>
+              <span style={PILL_STYLE}>{t.academic.programmes.tag}</span>
               <h2
                 className="font-serif font-bold"
                 style={{ color: "#0F172A", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", lineHeight: 1.2, marginBottom: "20px" }}
               >
-                Choose Your Stream
+                {t.academic.programmes.title}
               </h2>
               <p style={{ color: "#475569", fontSize: "15px", lineHeight: 1.75 }}>
                 Four specialised streams designed to prepare students for professional careers and higher university studies. Each stream is crafted to align with national curriculum standards while nurturing individual strengths.
@@ -292,12 +294,12 @@ const Academic = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span style={PILL_STYLE}>Our Pride</span>
+            <span style={PILL_STYLE}>{t.academic.achievements.tag}</span>
             <h2
               className="font-serif font-bold"
               style={{ color: "#0F172A", fontSize: "clamp(1.75rem, 4vw, 2.75rem)", lineHeight: 1.2 }}
             >
-              School Achievements
+              {t.academic.achievements.title}
             </h2>
           </motion.div>
 

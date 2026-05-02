@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Calendar, Facebook, Youtube, Instagram, ChevronRight } from "lucide-react";
 import { SCHOOL_INFO, QUICK_LINKS, PROGRAMS_LIST } from "../../data/site";
+import { useTranslation } from "../../lib/useTranslation";
 
 const SOCIAL_ICONS = [
   { Icon: Facebook,  label: "Follow us on Facebook"  },
@@ -8,7 +9,9 @@ const SOCIAL_ICONS = [
   { Icon: Instagram, label: "Follow us on Instagram" },
 ];
 
-export const Footer = () => (
+export const Footer = () => {
+  const t = useTranslation();
+  return (
   <footer
     style={{ backgroundColor: "var(--footer-bg)", borderTop: "1px solid var(--footer-border)" }}
     className="backdrop-blur-xl"
@@ -24,7 +27,7 @@ export const Footer = () => (
             />
           </div>
           <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-            Quality education since {SCHOOL_INFO.foundedYear}. Nurturing students with character, knowledge, and wisdom in the heart of Pokhara.
+            {t.footer.tagline}
           </p>
           <div className="flex gap-3">
             {SOCIAL_ICONS.map(({ Icon, label }) => (
@@ -46,7 +49,7 @@ export const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>Quick Links</h4>
+          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>{t.footer.quickLinks}</h4>
           <ul className="space-y-3 text-sm">
             {QUICK_LINKS.map(({ label, path }) => (
               <li key={path}>
@@ -55,7 +58,7 @@ export const Footer = () => (
                   className="flex items-center gap-1.5 footer-link"
                 >
                   <ChevronRight size={12} style={{ color: "var(--accent)", opacity: 0.6 }} />
-                  {label}
+                  {path === "/admission" ? t.footer.admission : label}
                 </Link>
               </li>
             ))}
@@ -63,7 +66,7 @@ export const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>Programs</h4>
+          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>{t.footer.programmes}</h4>
           <ul className="space-y-3 text-sm">
             {PROGRAMS_LIST.map((p) => (
               <li key={p} className="flex items-center gap-1.5" style={{ color: "var(--text-secondary)" }}>
@@ -75,7 +78,7 @@ export const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>Contact</h4>
+          <h4 className="font-bold text-sm uppercase tracking-widest mb-5" style={{ color: "var(--text-primary)" }}>{t.footer.contact}</h4>
           <ul className="space-y-4 text-sm">
             <li className="flex gap-3 items-start" style={{ color: "var(--text-secondary)" }}>
               <MapPin size={16} className="shrink-0 mt-0.5" style={{ color: "var(--accent)", opacity: 0.7 }} />
@@ -101,7 +104,7 @@ export const Footer = () => (
         className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs"
         style={{ borderTop: "1px solid var(--glass-border)", color: "var(--text-muted)" }}
       >
-        <p>© {SCHOOL_INFO.copyrightYear} {SCHOOL_INFO.name}. All rights reserved.</p>
+        <p>© {SCHOOL_INFO.copyrightYear} {SCHOOL_INFO.name}. {t.footer.rights}</p>
         <div className="flex gap-6">
           <a href="#" className="hover:underline">Privacy Policy</a>
           <a href="#" className="hover:underline">Terms of Service</a>
@@ -109,4 +112,5 @@ export const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
