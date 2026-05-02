@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { CMSProvider } from "./lib/cmsContext";
 import { ThemeProvider } from "./lib/themeContext";
+import { LanguageProvider } from "./lib/languageContext";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { BackToTop } from "./components/ui/BackToTop";
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <CMSProvider>
       <ThemeProvider>
+        <LanguageProvider>
         <Router>
           <ScrollToTop />
           <GradientBackground />
@@ -41,6 +43,7 @@ export default function App() {
             <BackToTop />
           </div>
         </Router>
+      </LanguageProvider>
       </ThemeProvider>
     </CMSProvider>
   );

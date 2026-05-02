@@ -3,11 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "../ui/ThemeToggle";
+import { LanguageToggle } from "../ui/LanguageToggle";
+import { useTranslation } from "../../lib/useTranslation";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const t = useTranslation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -16,11 +19,11 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home",     path: "/" },
-    { name: "About Us", path: "/about" },
-    { name: "Academic", path: "/academic" },
-    { name: "Gallery",  path: "/gallery" },
-    { name: "Contact",  path: "/contact" },
+    { name: t.nav.home,    path: "/" },
+    { name: t.nav.about,   path: "/about" },
+    { name: t.nav.academic,path: "/academic" },
+    { name: t.nav.gallery, path: "/gallery" },
+    { name: t.nav.contact, path: "/contact" },
   ];
 
   const isActive = (path: string) =>
@@ -121,9 +124,12 @@ export const Navbar = () => {
                 className="btn-admission hidden sm:block px-6 py-2.5 rounded-full font-semibold text-sm cursor-pointer text-white"
                 style={{ outline: "none" }}
               >
-                Admission Open
+                {t.nav.admission}
               </Link>
-              
+
+              {/* Language Toggle */}
+              <LanguageToggle />
+
               {/* Theme Toggle */}
               <ThemeToggle />
 
