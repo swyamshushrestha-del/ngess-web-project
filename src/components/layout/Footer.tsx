@@ -100,16 +100,16 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div
-        className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs"
-        style={{ borderTop: "1px solid var(--glass-border)", color: "var(--text-muted)" }}
-      >
-        <p>© {SCHOOL_INFO.copyrightYear} {SCHOOL_INFO.name}. {t.footer.rights}</p>
-        <div className="flex gap-6">
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Terms of Service</a>
-        </div>
-      </div>
+         <div
+            className="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs"
+            style={{ borderTop: "1px solid var(--glass-border)", color: "var(--text-muted)" }}
+          >
+            <p>© {SCHOOL_INFO.copyrightYear} {SCHOOL_INFO.name}. {t.footer.rights}</p>
+            <div className="flex gap-6">
+              <Link to="/privacy" className="hover:underline">Privacy Policy</Link>
+              <Link to="/terms" className="hover:underline">Terms of Service</Link>
+            </div>
+          </div>
     </div>
   </footer>
   );

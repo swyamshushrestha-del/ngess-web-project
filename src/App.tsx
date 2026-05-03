@@ -14,6 +14,8 @@ import Academic from "./pages/Academic";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Admission from "./pages/Admission";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -34,8 +36,10 @@ export default function App() {
                   <Route path="/academic"  element={<Academic />} />
                   <Route path="/gallery"   element={<Gallery />} />
                   <Route path="/contact"   element={<Contact />} />
-                  <Route path="/admission" element={<Admission />} />
-                  <Route path="*"          element={<NotFound />} />
+                <Route path="/admission" element={<Admission />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="*" element={<NotFound />} />
                 </Routes>
               </AnimatePresence>
             </main>
