@@ -9,15 +9,15 @@ export const en = {
   },
   hero: {
     tagline: "NEB Affiliated · Pokhara, Nepal",
-    headline1: "Empowering Minds,",
-    headline2: "My Second Teacher",
+    headline1: "Empowering",
+    headline2: "Minds",
     subtext:
-      "Shaping the future of Nepal through quality education in Science, Management, Computer Science, and Hotel Management & Tourism.",
+      "Shaping the future of Nepal through quality education in Kindergarten, Primary, and Secondary levels.",
     ctaPrimary: "Explore Academic",
     ctaSecondary: "Virtual Tour",
   },
   stats: {
-    descriptions: ["Est. January 1994", "Expert Faculty", "Active Learners", "National Excellence"],
+    descriptions: ["Est. January 1994 - 32+ years serving Pokhara", "50+ qualified teachers, NEB-certified faculty", "1,500+ active students from Kindergarten to Class 12", "99% SEE pass rate - proven academic excellence since 1994"],
   },
   leadership: {
     sectionTag: "Leadership",

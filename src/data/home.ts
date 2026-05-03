@@ -1,15 +1,16 @@
 import {
   GraduationCap, Users, CheckCircle,
   BookOpen, Globe, Trophy,
+  School,
 } from "lucide-react";
 import type { StatItem, Feature, Testimonial, GalleryImage, NewsItem } from "../lib/types";
 
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ── Hero ─────────────────────────────────────────────────────────────────────
 
 export const HERO = {
   tagline: "Since 1994 AD",
-  headlineTop: "Empowering",
-  headlineBottom: "Minds",
+  headline1: "Empowering",
+  headline2: "Minds",
   description:
     "Education for Character, Knowledge & Wisdom. A premier institution in Pokhara from Kindergarten to Class 12.",
   ctaPrimary: "Admission Open",
@@ -23,7 +24,7 @@ export const HERO = {
   annotations: ["NEB Affiliated", "Grade K–12"],
 };
 
-// ─── Principal's Message ──────────────────────────────────────────────────────
+// ── Principal's Message ──────────────────────────────────────────────────────────
 
 export const PRINCIPAL_MESSAGE = {
   title: "Message from the Principal",
@@ -35,16 +36,16 @@ export const PRINCIPAL_MESSAGE = {
   signedBy: "The Principal",
 };
 
-// ─── Stats ────────────────────────────────────────────────────────────────────
+// ── Stats ────────────────────────────────────────────────────────────────────
 
 export const stats: StatItem[] = [
-  { label: "Years of Excellence", value: "32+",    icon: BookOpen },
-  { label: "Qualified Teachers",  value: "50+",    icon: GraduationCap },
-  { label: "Students Enrolled",   value: "1,500+", icon: Users },
-  { label: "SEE Pass Rate",       value: "99%",    icon: CheckCircle },
+  { label: "Years of Excellence", value: "32+",    icon: BookOpen, desc: "Est. January 1994" },
+  { label: "Qualified Teachers",  value: "50+",    icon: GraduationCap, desc: "Expert Faculty" },
+  { label: "Students Enrolled",   value: "1,500+", icon: Users, desc: "Active Learners" },
+  { label: "SEE Pass Rate",       value: "99%",    icon: CheckCircle, desc: "National Excellence" },
 ];
 
-// ─── Why Choose Us ────────────────────────────────────────────────────────────
+// ── Why Choose Us ────────────────────────────────────────────────────────────
 
 export const features: Feature[] = [
   {
@@ -67,7 +68,7 @@ export const features: Feature[] = [
   },
 ];
 
-// ─── AI Tutor Section ─────────────────────────────────────────────────────────
+// ── AI Tutor Section ─────────────────────────────────────────────────────────
 
 export const AI_TUTOR = {
   title: "Interactive AI Learning",
@@ -76,7 +77,7 @@ export const AI_TUTOR = {
   feature: "Voice Enabled — Natural conversation with Gemini 2.5 Live",
 };
 
-// ─── News ─────────────────────────────────────────────────────────────────────
+// ── News ─────────────────────────────────────────────────────────────────────
 
 export const newsItems: NewsItem[] = [
   {
@@ -96,7 +97,7 @@ export const newsItems: NewsItem[] = [
   },
 ];
 
-// ─── Testimonials ─────────────────────────────────────────────────────────────
+// ── Testimonials ─────────────────────────────────────────────────────────────
 
 export const testimonials: Testimonial[] = [
   {
@@ -116,15 +117,15 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-// ─── CTA Section ─────────────────────────────────────────────────────────────
+// ── CTA Section ────────────────────────────────────────────────────────────
 
 export const CTA_SECTION = {
   title: "Ready to join the New Galaxy family?",
-  description: "Applications are open for academic year 2026–27. Seats are limited.",
-  button: "Start Your Application",
+  description: "Applications are open for all streams. Take the first step toward a brighter future.",
+  button: "Apply Now",
 };
 
-// ─── Home Gallery Preview (6 images) ─────────────────────────────────────────
+// ── Home Gallery Preview (6 images) ─────────────────────────────────────────
 
 export const homeGalleryImages: GalleryImage[] = [
   { id: 1, src: "/images/hero.jpg",                              label: "Main Campus",  span: "col-span-2 row-span-2" },

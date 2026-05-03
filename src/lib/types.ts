@@ -12,6 +12,7 @@ export interface StatItem {
   label: string;
   value: string;
   icon: React.ElementType;
+  desc?: string;
 }
 
 export interface Feature {

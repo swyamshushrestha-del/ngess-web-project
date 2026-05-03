@@ -59,11 +59,13 @@ const StatCard = ({ value, label, icon: Icon, desc }: { value: string; label: st
         whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,134,75,0.14)" }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
         style={{
-          background: "white",
-          border: "1.5px solid #BBF7D0",
+          background: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(20px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(20px) saturate(1.8)",
+          border: "1.5px solid rgba(255,255,255,0.18)",
           borderRadius: "20px",
           padding: "28px 22px",
-          boxShadow: "0 4px 16px rgba(0,134,75,0.07)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
           textAlign: "center",
           cursor: "default",
         }}
@@ -72,18 +74,18 @@ const StatCard = ({ value, label, icon: Icon, desc }: { value: string; label: st
         <div style={{
           width: "52px", height: "52px",
           borderRadius: "14px",
-          background: "#F0FDF4",
-          border: "1.5px solid #BBF7D0",
+          background: "rgba(0,217,126,0.15)",
+          border: "1.5px solid rgba(0,217,126,0.3)",
           display: "flex", alignItems: "center", justifyContent: "center",
           margin: "0 auto 18px",
         }}>
-          <Icon size={22} style={{ color: "#00864B" }} />
+          <Icon size={22} style={{ color: "#00D97E" }} />
         </div>
         {/* Number */}
         <div style={{
           fontSize: "clamp(38px, 4vw, 52px)",
           fontWeight: 900,
-          color: "#00864B",
+          color: "#00D97E",
           lineHeight: 1,
           letterSpacing: "-2px",
           marginBottom: "8px",
@@ -92,11 +94,11 @@ const StatCard = ({ value, label, icon: Icon, desc }: { value: string; label: st
           {numericValue > 0 ? `${count.toLocaleString()}${suffix}` : value}
         </div>
         {/* Label */}
-        <div style={{ fontSize: "14px", fontWeight: 700, color: "#1E293B", marginBottom: "4px" }}>
+        <div style={{ fontSize: "14px", fontWeight: 700, color: "rgba(255,255,255,0.9)", marginBottom: "4px" }}>
           {label}
         </div>
         {/* Sub-desc */}
-        <div style={{ fontSize: "11px", fontWeight: 500, color: "#64748B" }}>
+        <div style={{ fontSize: "11px", fontWeight: 500, color: "rgba(255,255,255,0.5)" }}>
           {desc}
         </div>
       </motion.div>
@@ -108,9 +110,16 @@ const StatCard = ({ value, label, icon: Icon, desc }: { value: string; label: st
 const Home = () => {
   const t = useTranslation();
   const [isDark, setIsDark] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     document.title = "New Galaxy English Secondary School | Pokhara, Nepal";
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -128,300 +137,307 @@ const Home = () => {
 
   return (
     <div>
-      {/* ── Hero ── */}
+      {/* ── Hero Section: Parallax + Liquidmorphism ── */}
       <section style={{
         height: "100vh", position: "relative", overflow: "hidden",
         background: "#060A14",
       }}>
+        {/* ── PARALLAX BACKGROUND ── */}
+        <div style={{
+          position: "absolute", inset: -60, zIndex: 1,
+          transform: `translateY(${scrollY * 0.4}px)`,
+        }}>
+          <img
+            src="/images/imageherofinal.png"
+            alt=""
+            aria-hidden="true"
+            style={{
+              width: "100%", height: "calc(100% + 120px)",
+              objectFit: "cover", objectPosition: "center 35%",
+            }}
+          />
+        </div>
 
-        {/* ── HERO BACKGROUND — actual school campus photo (Pokhara, Nepal) ── */}
-        <img
-          src="/images/imageherofinal.png"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 35%",
-            zIndex: 1,
-            animation: "heroZoomOut 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-          }}
-        />
-
-        {/* Left-side gradient — darkens left column for text legibility */}
+        {/* ── Gradient Overlays ── */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.18) 100%)",
+          background: "linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 30%, transparent 60%)",
         }} />
-
-        {/* Bottom gradient — darkens lower third for floating cards */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 22%, transparent 50%)",
-        }} />
-
-        {/* Top gradient — softens sky behind navbar */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 18%)",
-        }} />
-
-        {/* Dot-grid texture — subtle emerald depth */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 3, pointerEvents: "none",
-          backgroundImage: "radial-gradient(circle, rgba(0,217,126,0.14) 1px, transparent 1px)",
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 4, pointerEvents: "none",
+          backgroundImage: "radial-gradient(circle, rgba(0,217,126,0.1) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
-          opacity: 0.30,
+          opacity: 0.3,
         }} />
 
-        {/* ── LEFT COLUMN: headline + tagline + description + CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          style={{
-            position: "absolute", left: "3%", top: "120px",
-            maxWidth: "460px", zIndex: 20,
-          }}
-        >
-          {/* ── UNIFIED HEADLINE ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{
-              fontSize: "clamp(44px, 6vw, 92px)",
-              fontWeight: 900,
-              color: "rgba(255,255,255,0.97)",
-              lineHeight: 0.88, letterSpacing: "-3px",
-              textTransform: "uppercase",
-              userSelect: "none",
-              marginBottom: "28px",
-            }}
-          >
-            {t.hero.headline1}
-          </motion.div>
-          {/* Semantic H1 for SEO — visually hidden, screen-reader accessible */}
-          <h1 className="sr-only">
-            New Galaxy English Secondary School — Empowering Minds Since 1994. Education for Character, Knowledge &amp; Wisdom in Pokhara, Nepal.
-          </h1>
-
-          {/* Since 1994 tagline */}
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-            <div style={{ width: "32px", height: "2px", background: "var(--accent)" }} />
-            <span style={{ color: "var(--accent)", fontSize: "11px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase" }}>
-              Since 1994 AD
-            </span>
-          </div>
-
-          {/* Description */}
-          <p style={{
-            color: "rgba(255,255,255,0.88)",
-            fontSize: "15px", lineHeight: 1.75, marginBottom: "28px",
-          }}>
-            {t.hero.subtext}
-          </p>
-
-          {/* CTA Buttons side-by-side */}
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} style={{ display: "inline-flex" }}>
-              <Link
-                to="/admission"
-                style={{
-                  padding: "13px 28px", borderRadius: "50px",
-                  background: "linear-gradient(135deg, var(--accent) 0%, #00C070 100%)",
-                  color: "white", fontWeight: 700, fontSize: "14px",
-                  display: "inline-flex", alignItems: "center", gap: "8px",
-                  textDecoration: "none", outline: "none",
-                }}
+        {/* ── CONTENT GRID ── */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 10,
+          display: "flex", alignItems: "center",
+        }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            {/* LEFT COLUMN: Text Content Only */}
+            <div className="lg:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                {t.hero.ctaPrimary}
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} style={{ display: "inline-flex" }}>
-              <Link
-                to="/about"
-                style={{
-                  padding: "13px 24px", borderRadius: "50px",
-                  background: "rgba(255,255,255,0.10)",
-                  color: "white", fontWeight: 600, fontSize: "14px",
-                  border: "1px solid rgba(255,255,255,0.28)",
-                  backdropFilter: "blur(8px)",
-                  display: "inline-flex", alignItems: "center",
-                  textDecoration: "none", outline: "none",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                {t.hero.ctaSecondary}
-              </Link>
-            </motion.div>
-          </div>
+                {/* EST. Badge */}
+                <div style={{
+                  display: "inline-block", marginBottom: "20px",
+                  padding: "6px 16px", borderRadius: "50px",
+                  background: "rgba(0,217,126,0.15)",
+                  border: "1px solid rgba(0,217,126,0.3)",
+                  color: "#00D97E", fontSize: "11px", fontWeight: 700,
+                  letterSpacing: "2px", textTransform: "uppercase",
+                }}>
+                  EST. 1994
+                </div>
 
-          {/* ── Compact trust badges below CTAs ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            style={{ display: "flex", gap: "10px", marginTop: "20px", flexWrap: "wrap" }}
-          >
-            <div style={{
-              background: "rgba(0,217,126,0.08)",
-              border: "1px solid rgba(0,217,126,0.28)",
-              borderRadius: "12px", padding: "10px 14px",
-              display: "flex", alignItems: "center", gap: "10px",
-            }}>
-              <ClipboardList size={15} style={{ color: "var(--accent)", flexShrink: 0 }} />
-              <div>
-                <div style={{ color: "var(--accent)", fontSize: "11px", fontWeight: 700, lineHeight: 1.2 }}>Pre Registration</div>
-                <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "10px", marginTop: "2px" }}>Grade 11 · Now Open</div>
-              </div>
-            </div>
+                {/* Main Headline */}
+                <h1 style={{
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  fontWeight: 900, color: "white",
+                  lineHeight: 1.1, letterSpacing: "-1px",
+                  marginBottom: "20px",
+                }}>
+                  {t.hero.headline1}<br />
+                  {t.hero.headline2}
+                </h1>
 
-            <div style={{
-              background: "rgba(245,158,11,0.07)",
-              border: "1px solid rgba(245,158,11,0.22)",
-              borderRadius: "12px", padding: "10px 14px",
-              display: "flex", alignItems: "center", gap: "10px",
-            }}>
-              <Award size={15} style={{ color: "#F59E0B", flexShrink: 0 }} />
-              <div>
-                <div style={{ color: "#F59E0B", fontSize: "11px", fontWeight: 700, lineHeight: 1.2 }}>Excellence Proven</div>
-                <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "10px", marginTop: "2px" }}>99% SEE Pass Rate</div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+                {/* Description */}
+                <p style={{
+                  color: "rgba(255,255,255,0.8)",
+                  fontSize: "15px", lineHeight: 1.7,
+                  marginBottom: "32px", maxWidth: "450px",
+                }}>
+                  {t.hero.subtext}
+                </p>
 
-        {/* ── ANNOTATION CALLOUTS: NEB Affiliated + My second teacher (side by side) ── */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          style={{ position: "absolute", top: "20%", right: "10%", zIndex: 20, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0" }}
-        >
-          <div style={{ display: "flex", gap: "10px" }}>
-            <div style={{
-              background: "rgba(0,0,0,0.52)",
-              backdropFilter: "blur(14px)",
-              border: "1px solid rgba(0,217,126,0.40)", borderRadius: "10px",
-              padding: "8px 14px",
-              color: "white",
-              fontSize: "12px", fontWeight: 600,
-              display: "flex", alignItems: "center", gap: "8px",
-            }}>
-              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "var(--accent)", display: "inline-block", flexShrink: 0 }} />
-              {t.hero.tagline}
-            </div>
-            <div style={{
-              background: "rgba(0,0,0,0.52)",
-              backdropFilter: "blur(14px)",
-              border: "1px solid rgba(255,169,77,0.40)", borderRadius: "10px",
-              padding: "8px 14px",
-              color: "white",
-              fontSize: "12px", fontWeight: 600,
-              display: "flex", alignItems: "center", gap: "8px",
-            }}>
-              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FFA94D", display: "inline-block", flexShrink: 0 }} />
-              {t.hero.headline2}
+                {/* CTA Buttons */}
+                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                  <Link to="/admission" style={{
+                    padding: "14px 32px", borderRadius: "50px",
+                    background: "linear-gradient(135deg, #00864B 0%, #00C070 100%)",
+                    color: "white", fontWeight: 700, fontSize: "14px",
+                    display: "inline-flex", alignItems: "center", gap: "8px",
+                    textDecoration: "none",
+                  }}>
+                    {t.hero.ctaPrimary} →
+                  </Link>
+                </div>
+
+                {/* Trust Badges */}
+                <div style={{ display: "flex", gap: "10px", marginTop: "24px", flexWrap: "wrap" }}>
+                  <div style={{
+                    background: "rgba(0,217,126,0.08)",
+                    border: "1px solid rgba(0,217,126,0.28)",
+                    borderRadius: "12px", padding: "10px 14px",
+                    display: "flex", alignItems: "center", gap: "10px",
+                  }}>
+                    <ClipboardList size={15} style={{ color: "var(--accent)", flexShrink: 0 }} />
+                    <div>
+                      <div style={{ color: "var(--accent)", fontSize: "11px", fontWeight: 700, lineHeight: 1.2 }}>Pre Registration</div>
+                      <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "10px", marginTop: "2px" }}>Grade 11 · Now Open</div>
+                    </div>
+                  </div>
+                  <div style={{
+                    background: "rgba(245,158,11,0.07)",
+                    border: "1px solid rgba(245,158,11,0.22)",
+                    borderRadius: "12px", padding: "10px 14px",
+                    display: "flex", alignItems: "center", gap: "10px",
+                  }}>
+                    <Award size={15} style={{ color: "#F59E0B", flexShrink: 0 }} />
+                    <div>
+                      <div style={{ color: "#F59E0B", fontSize: "11px", fontWeight: 700, lineHeight: 1.2 }}>Excellence Proven</div>
+                      <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "10px", marginTop: "2px" }}>99% SEE Pass Rate</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-          <div style={{ width: "1px", height: "44px", background: "rgba(0,217,126,0.35)", margin: "0 20px 0 auto" }} />
-        </motion.div>
+        </div>
 
-        {/* ── BOTTOM ROW: Social Icons + Scroll — centered ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          style={{
-            position: "absolute", bottom: 0, left: 0, right: 0,
-            display: "flex", flexDirection: "column", alignItems: "center",
-            gap: "12px", paddingBottom: "28px", zIndex: 20,
-          }}
-        >
-          {/* Social Icons */}
-          <div style={{ display: "flex", gap: "10px" }}>
-            {[
-              { Icon: Facebook,  title: "Facebook",  href: "https://facebook.com/newgalaxyschool" },
-              { Icon: Twitter,   title: "Twitter",   href: "https://twitter.com/newgalaxyschool" },
-              { Icon: Instagram, title: "Instagram", href: "https://instagram.com/newgalaxyschool" },
-              { Icon: Youtube,   title: "YouTube",   href: "https://youtube.com/@newgalaxyschool" },
-            ].map(({ Icon, title, href }) => (
-              <a key={title} href={href} aria-label={title} style={{
-                width: "34px", height: "34px", borderRadius: "50%",
+        {/* ── BOTTOM RIGHT: Animated Stats Cards (Vertical) ── */}
+        <div style={{
+          position: "absolute",
+          bottom: "100px",
+          right: "5%",
+          zIndex: 20,
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          maxWidth: "260px",
+        }}>
+          {stats.slice(0, 3).map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+              style={{
                 background: "rgba(255,255,255,0.10)",
-                border: "1px solid rgba(255,255,255,0.20)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                color: "rgba(255,255,255,0.70)",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-              }}>
-                <Icon size={14} />
-              </a>
-            ))}
-          </div>
+                backdropFilter: "blur(24px) saturate(1.8)",
+                WebkitBackdropFilter: "blur(24px) saturate(1.8)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                borderRadius: "16px",
+                padding: "18px 20px",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                <div style={{
+                      width: "44px", height: "44px", borderRadius: "12px",
+                      background: "linear-gradient(135deg, rgba(0,217,126,0.2), rgba(0,192,112,0.3))",
+                      border: "1px solid rgba(0,217,126,0.4)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0,
+                    }}>
+                      <stat.icon size={18} style={{ color: "#00D97E" }} />
+                    </div>
+                <div>
+                  <div style={{
+                            fontSize: "28px", fontWeight: 900,
+                            color: "#00D97E", lineHeight: 1,
+                            fontVariantNumeric: "tabular-nums",
+                          }}>
+                    {stat.value}
+                  </div>
+                  <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", fontWeight: 600, marginTop: "3px" }}>
+                    {stat.label}
+                  </div>
+                  {stat.desc && (
+                    <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "4px" }}>
+                      {stat.desc}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-          {/* Scroll indicator */}
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            style={{
-              color: "rgba(255,255,255,0.40)",
-              fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", fontWeight: 600,
-            }}
-          >
-            scroll ↓
-          </motion.div>
+        {/* ── SCROLL INDICATOR ── */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{
+            position: "absolute", bottom: "30px", left: "50%",
+            transform: "translateX(-50%)", zIndex: 20,
+            textAlign: "center",
+            opacity: scrollY > 100 ? 0 : 0.5,
+            transition: "opacity 0.3s ease",
+          }}
+        >
+          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px", letterSpacing: "3px", marginBottom: "8px" }}>
+            SCROLL TO EXPLORE
+          </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
         </motion.div>
       </section>
 
-      {/* ── Stats ── */}
+       {/* ── Stats Section ── */}
       <section style={{
-        background: "linear-gradient(180deg, #FFFFFF 0%, #F0FDF6 100%)",
-        padding: "80px 0",
+        background: "#FFFFFF",
+        padding: "100px 0",
       }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: "center", marginBottom: "48px" }}
-          >
+          {/* Section header - NO MOTION */}
+          <div style={{
+            textAlign: "center",
+            marginBottom: "60px",
+            opacity: 1,
+          }}>
             <div style={{
               display: "inline-block",
-              padding: "5px 16px", borderRadius: "50px",
+              padding: "6px 20px", borderRadius: "50px",
               background: "#F0FDF4",
               border: "1.5px solid #BBF7D0",
               color: "#00864B",
               fontSize: "11px", fontWeight: 700,
               letterSpacing: "3px", textTransform: "uppercase",
-              marginBottom: "14px",
+              marginBottom: "20px",
             }}>
-              Our Impact
+              Our Impact Since 1994
             </div>
             <h2 style={{
-              fontSize: "clamp(24px, 3vw, 40px)",
+              fontSize: "clamp(28px, 4vw, 48px)",
               fontWeight: 800,
               color: "#0F172A",
               letterSpacing: "-0.5px",
+              lineHeight: 1.2,
+              marginBottom: "16px",
+              opacity: 1,
             }}>
               Numbers That Define{" "}
               <span style={{ color: "#00864B" }}>Our Legacy</span>
             </h2>
-          </motion.div>
+            <p style={{
+              fontSize: "16px", color: "#475569",
+              lineHeight: 1.7, maxWidth: "600px", margin: "0 auto",
+              opacity: 1,
+            }}>
+              Trusted by over 1,500 families in Pokhara since 1994. NEB-affiliated education with proven results.
+            </p>
+          </div>
 
-          {/* Cards grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            {stats.map(({ label, value, icon }, i) => (
-              <motion.div
+          {/* Cards grid - 4 columns on desktop - NO MOTION */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map(({ label, value, icon: Icon, desc }, i) => (
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
+                style={{
+                  background: "white",
+                  border: "1.5px solid #BBF7D0",
+                  borderRadius: "20px",
+                  padding: "28px 22px",
+                  boxShadow: "0 4px 16px rgba(0,134,75,0.07)",
+                  textAlign: "center",
+                  cursor: "default",
+                  opacity: 1,
+                }}
               >
-                <StatCard value={value} label={label} icon={icon} desc={t.stats.descriptions[i]} />
-              </motion.div>
+                {/* Icon */}
+                <div style={{
+                  width: "52px", height: "52px",
+                  borderRadius: "14px",
+                  background: "#F0FDF4",
+                  border: "1.5px solid #BBF7D0",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto 18px",
+                }}>
+                  <Icon size={22} style={{ color: "#00864B" }} />
+                </div>
+                {/* Number */}
+                <div style={{
+                  fontSize: "clamp(38px, 4vw, 52px)",
+                  fontWeight: 900,
+                  color: "#00864B",
+                  lineHeight: 1,
+                  letterSpacing: "-2px",
+                  marginBottom: "8px",
+                  fontVariantNumeric: "tabular-nums",
+                }}>
+                  {value}
+                </div>
+                {/* Label */}
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#1E293B", marginBottom: "4px" }}>
+                  {label}
+                </div>
+                {/* Sub-desc */}
+                <div style={{ fontSize: "11px", fontWeight: 500, color: "#64748B" }}>
+                  {desc}
+                </div>
+              </div>
             ))}
           </div>
         </div>
