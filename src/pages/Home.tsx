@@ -136,7 +136,7 @@ const Home = () => {
 
         {/* ── HERO BACKGROUND — actual school campus photo (Pokhara, Nepal) ── */}
         <img
-          src="/images/hero.jpg"
+          src="/images/imageherofinal.png"
           alt=""
           aria-hidden="true"
           style={{
