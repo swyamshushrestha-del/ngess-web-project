@@ -7,8 +7,15 @@ Follow this workflow for **every update** pushed to GitHub.
 ## Step-by-Step Workflow
 
 ```
-Idea → Branch → Build → README (if needed) → Commit → Merge → Push
+Idea → Branch → Build → README (if needed) → Commit → ✅ Verify with owner → Merge → Push
 ```
+
+> **⚠️ Rule:** Before any `git push`, Copilot must show a summary and get explicit approval:
+> - Branch name
+> - Commit message(s)
+> - Files changed
+>
+> **No push happens without a thumbs-up.**
 
 ### 1. 🌿 Create a Branch
 

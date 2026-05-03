@@ -340,12 +340,12 @@ const Home = () => {
           {/* Social Icons */}
           <div style={{ display: "flex", gap: "10px" }}>
             {[
-              { Icon: Facebook,  title: "Facebook"  },
-              { Icon: Twitter,   title: "Twitter"   },
-              { Icon: Instagram, title: "Instagram" },
-              { Icon: Youtube,   title: "YouTube"   },
-            ].map(({ Icon, title }) => (
-              <a key={title} href="#" aria-label={title} style={{
+              { Icon: Facebook,  title: "Facebook",  href: "https://facebook.com/newgalaxyschool" },
+              { Icon: Twitter,   title: "Twitter",   href: "https://twitter.com/newgalaxyschool" },
+              { Icon: Instagram, title: "Instagram", href: "https://instagram.com/newgalaxyschool" },
+              { Icon: Youtube,   title: "YouTube",   href: "https://youtube.com/@newgalaxyschool" },
+            ].map(({ Icon, title, href }) => (
+              <a key={title} href={href} aria-label={title} style={{
                 width: "34px", height: "34px", borderRadius: "50%",
                 background: "rgba(255,255,255,0.10)",
                 border: "1px solid rgba(255,255,255,0.20)",
@@ -608,9 +608,9 @@ const Home = () => {
                   {/* Social icons */}
                   <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
                     {[
-                      { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+                      { icon: Facebook, href: "https://facebook.com/newgalaxyschool", label: "Facebook" },
                       { icon: Mail, href: "mailto:principal@ngess.edu.np", label: "Email" },
-                      { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+                      { icon: Linkedin, href: "https://linkedin.com/school/new-galaxy-english-secondary-school", label: "LinkedIn" },
                     ].map(({ icon: Icon, href, label }) => (
                       <a
                         key={label}

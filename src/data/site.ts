@@ -17,9 +17,10 @@ export const SCHOOL_INFO = {
 };
 
 export const SOCIAL_LINKS = [
-  { name: "Facebook",  href: "#" },
-  { name: "YouTube",   href: "#" },
-  { name: "Instagram", href: "#" },
+  { name: "Facebook",  href: "https://facebook.com/newgalaxyschool" },
+  { name: "YouTube",   href: "https://youtube.com/@newgalaxyschool" },
+  { name: "Instagram", href: "https://instagram.com/newgalaxyschool" },
+  { name: "Twitter",   href: "https://twitter.com/newgalaxyschool" },
 ];
 
 export const QUICK_LINKS = [

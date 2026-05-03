@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Calendar, Facebook, Youtube, Instagram, ChevronRight } from "lucide-react";
-import { SCHOOL_INFO, QUICK_LINKS, PROGRAMS_LIST } from "../../data/site";
+import { SCHOOL_INFO, QUICK_LINKS, PROGRAMS_LIST, SOCIAL_LINKS } from "../../data/site";
 import { useTranslation } from "../../lib/useTranslation";
 
 const SOCIAL_ICONS = [
-  { Icon: Facebook,  label: "Follow us on Facebook"  },
-  { Icon: Youtube,   label: "Watch us on YouTube"    },
-  { Icon: Instagram, label: "Follow us on Instagram" },
+  { Icon: Facebook,  label: "Follow us on Facebook", href: SOCIAL_LINKS[0].href },
+  { Icon: Youtube,   label: "Watch us on YouTube", href: SOCIAL_LINKS[1].href },
+  { Icon: Instagram, label: "Follow us on Instagram", href: SOCIAL_LINKS[2].href },
 ];
 
 export const Footer = () => {
@@ -30,10 +30,10 @@ export const Footer = () => {
             {t.footer.tagline}
           </p>
           <div className="flex gap-3">
-            {SOCIAL_ICONS.map(({ Icon, label }) => (
+            {SOCIAL_ICONS.map(({ Icon, label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
                 aria-label={label}
                 className="w-9 h-9 rounded-lg flex items-center justify-center footer-social backdrop-blur-sm border"
                 style={{
