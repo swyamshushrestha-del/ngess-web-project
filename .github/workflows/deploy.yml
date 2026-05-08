@@ -33,8 +33,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          remote-dir: /public_html/   # adjust to your hosting root for www.newgalaxy.edu.np
-          # optional: exclude: |
-          #   **/.git*
-          #   **/node_modules/**
-          #   **.gitignore
+          server-dir: /public_html/
