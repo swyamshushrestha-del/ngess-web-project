@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import { AnimatePresence } from "motion/react";
 import { CMSProvider } from "./lib/cmsContext";
 import { ThemeProvider } from "./lib/themeContext";
@@ -8,15 +9,26 @@ import { Footer } from "./components/layout/Footer";
 import { BackToTop } from "./components/ui/BackToTop";
 import { ScrollToTop } from "./components/ui/ScrollToTop";
 import { GradientBackground } from "./components/ui/GradientBackground";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Academic from "./pages/Academic";
-import Gallery from "./pages/Gallery";
-import Contact from "./pages/Contact";
-import Admission from "./pages/Admission";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
+
+// Lazy load all page components for code splitting
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Academic = lazy(() => import("./pages/Academic"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Admission = lazy(() => import("./pages/Admission"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Loading fallback component
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-pulse text-[var(--gold-accent)]">Loading...</div>
+    </div>
+  );
+}
 
 export default function App() {
   return (
@@ -30,17 +42,19 @@ export default function App() {
             <Navbar />
             <main>
               <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/"          element={<Home />} />
-                  <Route path="/about"     element={<About />} />
-                  <Route path="/academic"  element={<Academic />} />
-                  <Route path="/gallery"   element={<Gallery />} />
-                  <Route path="/contact"   element={<Contact />} />
-                <Route path="/admission" element={<Admission />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="*" element={<NotFound />} />
-                </Routes>
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    <Route path="/"          element={<Home />} />
+                    <Route path="/about"     element={<About />} />
+                    <Route path="/academic"  element={<Academic />} />
+                    <Route path="/gallery"   element={<Gallery />} />
+                    <Route path="/contact"   element={<Contact />} />
+                    <Route path="/admission" element={<Admission />} />
+                    <Route path="/privacy"   element={<Privacy />} />
+                    <Route path="/terms"     element={<Terms />} />
+                    <Route path="*"          element={<NotFound />} />
+                  </Routes>
+                </Suspense>
               </AnimatePresence>
             </main>
             <Footer />

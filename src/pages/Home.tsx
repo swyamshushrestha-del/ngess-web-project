@@ -148,7 +148,7 @@ const Home = () => {
           transform: `translateY(${scrollY * 0.4}px)`,
         }}>
           <img
-            src="/images/imageherofinal.png"
+            src="/images/webp/imageherofinal.webp"
             alt=""
             aria-hidden="true"
             style={{
@@ -510,7 +510,8 @@ const Home = () => {
                 aspectRatio: "4/5",
               }}>
                 <img
-                  src="/images/principal.jpg"
+                  src="/images/webp/principal.webp"
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                   alt="Students at New Galaxy English Secondary School"
                 />
@@ -606,7 +607,8 @@ const Home = () => {
                   boxShadow: "0 4px 14px rgba(0,134,75,0.20)",
                 }}>
                   <img
-                    src="/images/principal-avatar.jpg"
+                    src="/images/webp/principal-avatar.webp"
+                    loading="lazy"
                     alt="Dr. Ramji Sharma"
                     style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
                   />
@@ -813,12 +815,12 @@ const Home = () => {
           overflow: "hidden",
         }}>
           {[
-            { src: "/images/college1.jpg", pos: "center center", anim: "collageZoom",    dur: "14s", delay: "0s"   },
-            { src: "/images/college2.jpg", pos: "center 30%",    anim: "collageZoomAlt", dur: "16s", delay: "2s"   },
-            { src: "/images/college3.jpg", pos: "center center", anim: "collageZoom",    dur: "12s", delay: "1s"   },
-            { src: "/images/college4.jpg", pos: "center 20%",    anim: "collageZoomAlt", dur: "15s", delay: "3s"   },
-            { src: "/images/college5.jpg", pos: "center center", anim: "collageZoom",    dur: "13s", delay: "0.5s" },
-            { src: "/images/college6.jpg", pos: "center top",    anim: "collageZoomAlt", dur: "17s", delay: "1.5s" },
+            { src: "/images/webp/college1.webp", pos: "center center", anim: "collageZoom",    dur: "14s", delay: "0s"   },
+            { src: "/images/webp/college2.webp", pos: "center 30%",    anim: "collageZoomAlt", dur: "16s", delay: "2s"   },
+            { src: "/images/webp/college3.webp", pos: "center center", anim: "collageZoom",    dur: "12s", delay: "1s"   },
+            { src: "/images/webp/college4.webp", pos: "center 20%",    anim: "collageZoomAlt", dur: "15s", delay: "3s"   },
+            { src: "/images/webp/college5.webp", pos: "center center", anim: "collageZoom",    dur: "13s", delay: "0.5s" },
+            { src: "/images/webp/college6.webp", pos: "center top",    anim: "collageZoomAlt", dur: "17s", delay: "1.5s" },
           ].map(({ src, pos, anim, dur, delay }, i) => (
             <div key={i} style={{ overflow: "hidden", position: "relative" }}>
               <img
