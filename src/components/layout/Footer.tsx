@@ -20,11 +20,14 @@ export const Footer = () => {
       <div className="grid md:grid-cols-4 gap-12 mb-14">
         <div className="md:col-span-1">
           <div className="flex items-center gap-2.5 mb-5">
-            <img
-              src="/logo-full.png"
-              alt={SCHOOL_INFO.name}
-              className="h-10 w-auto object-contain"
-            />
+            <picture>
+              <source srcSet="/logo-full.webp" type="image/webp" />
+              <img
+                src="/logo-full.png"
+                alt={SCHOOL_INFO.name}
+                className="h-10 w-auto object-contain"
+              />
+            </picture>
           </div>
           <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
             {t.footer.tagline}

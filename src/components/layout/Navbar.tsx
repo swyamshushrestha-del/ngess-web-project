@@ -44,11 +44,14 @@ export const Navbar = () => {
               to="/"
               className="flex items-center gap-3 flex-shrink-0 hover:opacity-85 transition-opacity duration-300 group"
             >
-              <img
-                src="/logo-full.png"
-                alt="New Galaxy English Secondary School"
-                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              />
+              <picture>
+                <source srcSet="/logo-full.webp" type="image/webp" />
+                <img
+                  src="/logo-full.png"
+                  alt="New Galaxy English Secondary School"
+                  className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+              </picture>
               <div
                 className="hidden sm:flex flex-col justify-center gap-0"
                 style={{
@@ -139,6 +142,7 @@ export const Navbar = () => {
                 className="p-2 md:hidden hover:opacity-70 transition-opacity cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Toggle menu"
+                aria-expanded={isOpen}
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>

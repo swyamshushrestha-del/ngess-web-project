@@ -239,8 +239,9 @@ const Contact = () => {
               {/* Name + Email row */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
                 <div>
-                  <label style={labelStyle}>{t.contact.form.name}</label>
+                  <label htmlFor="contact-name" style={labelStyle}>{t.contact.form.name}</label>
                   <input
+                    id="contact-name"
                     name="name"
                     type="text"
                     placeholder={t.contact.form.name}
@@ -251,8 +252,9 @@ const Contact = () => {
                   {errors.name && <span style={{ color: "#EF4444", fontSize: "12px" }}>{errors.name}</span>}
                 </div>
                 <div>
-                  <label style={labelStyle}>{t.contact.form.email}</label>
+                  <label htmlFor="contact-email" style={labelStyle}>{t.contact.form.email}</label>
                   <input
+                    id="contact-email"
                     name="email"
                     type="email"
                     placeholder={t.contact.form.email}
@@ -266,8 +268,9 @@ const Contact = () => {
 
               {/* Subject */}
               <div style={{ marginBottom: "20px" }}>
-                <label style={labelStyle}>Subject</label>
+                <label htmlFor="contact-subject" style={labelStyle}>Subject</label>
                 <input
+                  id="contact-subject"
                   name="subject"
                   type="text"
                   placeholder="Inquiry about Admission"
@@ -280,8 +283,9 @@ const Contact = () => {
 
               {/* Message */}
               <div style={{ marginBottom: "28px" }}>
-                <label style={labelStyle}>{t.contact.form.message}</label>
+                <label htmlFor="contact-message" style={labelStyle}>{t.contact.form.message}</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows={5}
                   placeholder={t.contact.form.message}

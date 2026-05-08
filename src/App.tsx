@@ -39,8 +39,15 @@ export default function App() {
           <ScrollToTop />
           <GradientBackground />
           <div className="min-h-screen font-sans text-white selection:bg-[var(--gold-accent)]/30 selection:text-white">
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
+              style={{ background: "var(--accent)", color: "#fff" }}
+            >
+              Skip to main content
+            </a>
             <Navbar />
-            <main>
+            <main id="main-content">
               <AnimatePresence mode="wait">
                 <Suspense fallback={<PageLoader />}>
                   <Routes>
