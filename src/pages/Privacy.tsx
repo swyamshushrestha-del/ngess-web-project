@@ -1,8 +1,14 @@
 import { useTranslation } from "../lib/useTranslation";
+import { useSEO } from "../lib/useSEO";
 import { Link } from "react-router-dom";
 
 const Privacy = () => {
   const t = useTranslation();
+  useSEO({
+    title: "Privacy Policy",
+    description: "Privacy policy of New Galaxy English Secondary School. Learn how we collect, use and protect your personal information.",
+    path: "/privacy",
+  });
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

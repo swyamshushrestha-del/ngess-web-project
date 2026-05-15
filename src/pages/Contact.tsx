@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSEO } from "../lib/useSEO";
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Calendar, CheckCircle } from "lucide-react";
 import { SCHOOL_INFO } from "../data/site";
@@ -37,9 +38,11 @@ const Contact = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    document.title = "Contact Us | New Galaxy English Secondary School";
-  }, []);
+  useSEO({
+    title: "Contact Us",
+    description: "Get in touch with New Galaxy English Secondary School in Pokhara. Call +977-61-570210, email info@newgalaxy.edu.np or visit our campus.",
+    path: "/contact",
+  });
 
   const validate = () => {
     const e: Record<string, string> = {};

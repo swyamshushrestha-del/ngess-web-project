@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSEO } from "../lib/useSEO";
 import { motion, AnimatePresence } from "motion/react";
 import { Filter, Play } from "lucide-react";
 import { Lightbox } from "../components/ui/Lightbox";
@@ -20,9 +21,11 @@ const Gallery = () => {
     return map[cat] ?? cat;
   };
 
-  useEffect(() => {
-    document.title = "Gallery | New Galaxy English Secondary School";
-  }, []);
+  useSEO({
+    title: "Gallery",
+    description: "Browse photos and videos from events, classrooms, and campus life at New Galaxy English Secondary School in Pokhara, Nepal.",
+    path: "/gallery",
+  });
 
   const filtered =
     activeFilter === "All" ? allImages : allImages.filter((img) => img.category === activeFilter);

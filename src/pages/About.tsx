@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { useSEO } from "../lib/useSEO";
 import { useTranslation } from "../lib/useTranslation";
 import { motion } from "motion/react";
 import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
@@ -10,9 +11,11 @@ const About = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const t = useTranslation();
 
-  useEffect(() => {
-    document.title = "About Us | New Galaxy English Secondary School";
-  }, []);
+  useSEO({
+    title: "About Us",
+    description: "Learn about New Galaxy English Secondary School in Pokhara, Nepal — our history, vision, mission, faculty and commitment to quality education since 1994.",
+    path: "/about",
+  });
 
   return (
     <div style={{ fontFamily: "Inter, system-ui, sans-serif" }}>

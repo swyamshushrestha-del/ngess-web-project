@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
+import { useSEO } from "../lib/useSEO";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { CheckCircle } from "lucide-react";
@@ -21,9 +22,11 @@ const Admission = () => {
     ...classOptions,
   ];
 
-  useEffect(() => {
-    document.title = "Admission | New Galaxy English Secondary School";
-  }, []);
+  useSEO({
+    title: "Admission",
+    description: "Apply for admission at New Galaxy English Secondary School in Pokhara. Open for Kindergarten to Grade 12 in Science, Management & Hotel Management.",
+    path: "/admission",
+  });
 
   if (submitted)
     return (

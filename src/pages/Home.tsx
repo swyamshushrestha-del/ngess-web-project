@@ -8,6 +8,7 @@ import {
   BookOpen, GraduationCap, Trophy, Globe, Pencil, Star, Atom, Ruler,
 } from "lucide-react";
 import { AnnouncementBar } from "../components/layout/AnnouncementBar";
+import { useSEO } from "../lib/useSEO";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { GlassCard } from "../components/ui/GlassCard";
 import { GlassButton } from "../components/ui/GlassButton";
@@ -112,9 +113,11 @@ const Home = () => {
   const [isDark, setIsDark] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    document.title = "New Galaxy English Secondary School | Pokhara, Nepal";
-  }, []);
+  useSEO({
+    title: "New Galaxy English Secondary School",
+    description: "Premier K–12 NEB-affiliated English-medium school in Pokhara, Nepal. Quality education for character, knowledge and wisdom since 1994. Enroll now for Grade 11.",
+    path: "/",
+  });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);

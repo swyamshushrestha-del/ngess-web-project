@@ -1,8 +1,14 @@
 import { useTranslation } from "../lib/useTranslation";
+import { useSEO } from "../lib/useSEO";
 import { Link } from "react-router-dom";
 
 const Terms = () => {
   const t = useTranslation();
+  useSEO({
+    title: "Terms of Service",
+    description: "Terms of service for using the New Galaxy English Secondary School website. Read our terms and conditions.",
+    path: "/terms",
+  });
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

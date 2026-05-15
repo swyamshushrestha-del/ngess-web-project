@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { motion } from "motion/react";
+import { useSEO } from "../lib/useSEO";
 import { courses, higherSecondary, achievements } from "../data/academic";
 import { useTranslation } from "../lib/useTranslation";
 
@@ -25,9 +25,11 @@ const PILL_STYLE: React.CSSProperties = {
 
 const Academic = () => {
   const t = useTranslation();
-  useEffect(() => {
-    document.title = "Academic Programmes | New Galaxy English Secondary School";
-  }, []);
+  useSEO({
+    title: "Academic Programmes",
+    description: "Explore academic programmes at New Galaxy School: Kindergarten, Primary, Secondary, and Higher Secondary in Science, Management & Hotel Management in Pokhara.",
+    path: "/academic",
+  });
 
   return (
     <div style={{ background: "#FFFFFF" }}>
