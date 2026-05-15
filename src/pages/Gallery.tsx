@@ -95,17 +95,21 @@ const Gallery = () => {
       {/* ── Filter Bar ── */}
       <div
         style={{
-          position: "sticky",
-          top: "70px",
-          zIndex: 30,
-          backgroundColor: "rgba(255,255,255,0.90)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: "1px solid #BBF7D0",
-          padding: "12px 16px",
+          padding: "16px 16px 0",
         }}
       >
-        <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto">
+        <div
+          className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.94)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid #BBF7D0",
+            borderRadius: "18px",
+            boxShadow: "0 10px 30px rgba(15,23,42,0.06)",
+            padding: "12px 16px",
+          }}
+        >
           <Filter size={15} className="shrink-0" style={{ color: "#00864B" }} />
           {galleryCategories.map((cat) => (
             <button

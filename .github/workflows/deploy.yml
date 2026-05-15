@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feature/add-bilingual-en-np   # adjust if you want to deploy from this branch
   workflow_dispatch:
 
 jobs:
@@ -29,7 +28,7 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.babalhost.com
+          server: ftp.newgalaxy.edu.np
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/

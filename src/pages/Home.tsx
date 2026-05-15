@@ -138,8 +138,9 @@ const Home = () => {
   return (
     <div>
       {/* ── Hero Section: Parallax + Liquidmorphism ── */}
-      <section style={{
-        height: "100vh", position: "relative", overflow: "hidden",
+      <section className="lg:h-screen" style={{
+        minHeight: "100svh",
+        position: "relative", overflow: "hidden",
         background: "#060A14",
       }}>
         {/* ── PARALLAX BACKGROUND ── */}
@@ -175,11 +176,8 @@ const Home = () => {
         }} />
 
         {/* ── CONTENT GRID ── */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 10,
-          display: "flex", alignItems: "center",
-        }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 flex items-start lg:absolute lg:inset-0 lg:items-center px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-0 lg:pb-0">
+          <div className="max-w-7xl mx-auto w-full">
             {/* LEFT COLUMN: Text Content Only */}
             <div className="lg:w-1/2">
               <motion.div
@@ -265,13 +263,11 @@ const Home = () => {
         </div>
 
         {/* ── BOTTOM RIGHT: Animated Stats Cards (Vertical) ── */}
-        <div style={{
+        <div className="hidden lg:flex flex-col" style={{
           position: "absolute",
           bottom: "100px",
           right: "5%",
           zIndex: 20,
-          display: "flex",
-          flexDirection: "column",
           gap: "12px",
           maxWidth: "260px",
         }}>
@@ -326,6 +322,7 @@ const Home = () => {
 
         {/* ── SCROLL INDICATOR ── */}
         <motion.div
+          className="hidden sm:block"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           style={{

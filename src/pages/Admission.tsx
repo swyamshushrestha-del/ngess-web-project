@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { CheckCircle } from "lucide-react";
@@ -13,6 +13,13 @@ import { useTranslation } from "../lib/useTranslation";
 const Admission = () => {
   const t = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+  const [selectedClass, setSelectedClass] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+  const class11Selected = ["class-11-science", "class-11-management", "class-11-hm"].includes(selectedClass);
+  const admissionClassOptions = [
+    { value: "", label: "Select Class" },
+    ...classOptions,
+  ];
 
   useEffect(() => {
     document.title = "Admission | New Galaxy English Secondary School";
@@ -54,7 +61,19 @@ const Admission = () => {
           </div>
 
           <GlassCard intensity="mid" className="p-8 lg:p-12">
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-10">
+            <form
+              ref={formRef}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = formRef.current;
+                if (!form || !form.checkValidity()) {
+                  form?.reportValidity();
+                  return;
+                }
+                setSubmitted(true);
+              }}
+              className="space-y-10"
+            >
               {/* Student Info */}
               <fieldset className="space-y-5">
                 <legend
@@ -68,7 +87,13 @@ const Admission = () => {
                   <GlassInput label="Date of Birth" type="date" required />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <GlassSelect label="Applying for Class" options={classOptions} required />
+                  <GlassSelect
+                    label="Applying for Class"
+                    options={admissionClassOptions}
+                    value={selectedClass}
+                    onChange={(e) => setSelectedClass(e.target.value)}
+                    required
+                  />
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>Gender</label>
                     <div
@@ -83,6 +108,29 @@ const Admission = () => {
                     </div>
                   </div>
                 </div>
+
+                {class11Selected && (
+                  <div className="space-y-5 pt-2">
+                    <div style={{ height: "1px", background: "var(--glass-border)" }} />
+                    <div className="grid md:grid-cols-2 gap-5">
+                      <GlassInput
+                        label="SEE GPA"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        placeholder="e.g. 3.85"
+                        required
+                      />
+                      <GlassInput
+                        label="Previous SEE Passed School"
+                        type="text"
+                        placeholder="Name of school"
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
               </fieldset>
 
               {/* Parent Info */}

@@ -16,5 +16,5 @@ export const classOptions = [
 export const ADMISSION_SUCCESS = {
   title: "Application Received!",
   message:
-    "Thank you for choosing New Galaxy. Our admissions team will review your application and contact you within 3–5 working days.",
+    "Thank you for choosing New Galaxy. Our admissions team will review your application and contact you within 24 hours.",
 };
