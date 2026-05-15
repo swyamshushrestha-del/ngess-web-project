@@ -16,5 +16,5 @@ export const teachingFacultyCount = 8;
 export const teachingFacultyPhotos = Array.from({ length: teachingFacultyCount }, (_, i) => ({
   id: i + 1,
   src: `https://picsum.photos/seed/faculty-${i + 1}/400/400`,
-  alt: `Faculty Member ${i + 1}`,
+  alt: `New Galaxy teaching faculty member`,
 }));

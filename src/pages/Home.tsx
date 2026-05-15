@@ -513,7 +513,7 @@ const Home = () => {
                   src="/images/webp/principal.webp"
                   loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-                  alt="Students at New Galaxy English Secondary School"
+                  alt="New Galaxy English Secondary School students on campus in Pokhara, Nepal"
                 />
                 {/* Quote overlay at bottom */}
                 <div style={{

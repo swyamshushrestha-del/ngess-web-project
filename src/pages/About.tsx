@@ -65,7 +65,7 @@ const About = () => {
                   src={ABOUT_HERO.photo}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
-                  alt={ABOUT_HERO.headline}
+                  alt={ABOUT_HERO.photoAlt}
                 />
               </div>
 
