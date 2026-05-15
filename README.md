@@ -162,6 +162,26 @@ Secrets required in GitHub repo:
 
 ---
 
+## Contributors
+
+[![swyamshushrestha-del](https://img.shields.io/badge/swyamshushrestha-del-owner-181717?logo=github)](https://github.com/swyamshushrestha-del)
+
+---
+
+## AI Collaboration
+
+This project was developed collaboratively with AI tools:
+
+| Tool | Role |
+|------|------|
+| **OpenCode (DeepSeek V4 Flash)** | Primary AI pair programmer — architecting, coding, deploying, SEO |
+| **Claude Code** | Planning, code review, and quality assurance |
+| **GitHub Copilot** | Inline code completion and suggestions |
+
+All AI-generated code was reviewed, tested, and approved by a human developer.
+
+---
+
 ## License
 
 © 2026 New Galaxy English Secondary School. All rights reserved.
